@@ -174,4 +174,17 @@ How I Read and Write Files (quick reference)
 Rate Limits & Parallelization
 - Prefer parallel batches for independent reads/searches (3–5 calls per batch). Beware external API rate limits.
 
+Important Notes
+- Always use absolute paths provided by the workspace; avoid relative paths unless explicitly required.
+- Preserve existing indentation characters and width; never convert tabs/spaces or reflow unrelated lines.
+- Pass non-interactive flags to commands (e.g., --yes) and pipe paged output with "| cat".
+- For long-running commands, set is_background=true and avoid foreground jobs that wait indefinitely.
+- Default to parallelizing independent reads/searches (cap 3–5 concurrent tool calls); sequence only when a result is required for the next step.
+- Re-read files before editing if not opened in the last five messages; limit to ≤3 consecutive edits before re-reading.
+- Cite in-repo code using the startLine:endLine:filepath fenced block; propose brand-new code with language-tagged fences.
+- Only store persistent memories if the user explicitly asks; otherwise do not save.
+- Utilities should avoid internal try/except when called from Node exec; rely on Node retries/fallbacks.
+- After substantive edits, run lints/build/tests as applicable and resolve issues before marking tasks complete.
+- Be mindful of caching with retries; avoid returning cached results on non-initial retries unless designed for it.
+
 End of Instructions
